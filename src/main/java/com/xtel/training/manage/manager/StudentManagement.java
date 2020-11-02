@@ -28,30 +28,50 @@ public class StudentManagement extends Student {
             }
         }
     }
-
     public Student updateData() throws SQLException {
         System.out.print("Ma sinh vien can sua: ");
         int idUpdate = Integer.parseInt(scanner.nextLine());
-        System.out.print("idUpdate: " + idUpdate);
-        System.out.print("Student.id: " + Student.id);
-        while (idUpdate == Student.id++) {
-            System.out.print("Ten sinh vien: ");
-            Student.name = scanner.nextLine();
-            System.out.print("Gioi tính: ");
-            Student.gender = Integer.parseInt(scanner.nextLine());
-            System.out.print("Dia chi: ");
-            Student.address = scanner.nextLine();
-            for (Student student : studentList) {
-                try {
-                    StudentDao.update(student);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+        for (int i = 0; i < studentList.size(); i++) {
+            if(idUpdate == id){
+                Student student = inputUpdateInfoStudent();
+                studentList.add(student);
             }
         }
+//        StudentDao.count();
+//        for (Student student : studentList) {
+//                try {
+//                    StudentDao.update(student);
+//                } catch (SQLException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+
+//        while (idUpdate == Student.id++) {
+//            System.out.print("Ten sinh vien: ");
+//            Student.name = scanner.nextLine();
+//            System.out.print("Gioi tính: ");
+//            Student.gender = Integer.parseInt(scanner.nextLine());
+//            System.out.print("Dia chi: ");
+//            Student.address = scanner.nextLine();
+//            for (Student student : studentList) {
+//                try {
+//                    StudentDao.update(student);
+//                } catch (SQLException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
             return new Student(id, name, gender, address);
     }
-
+    public Student inputUpdateInfoStudent() {
+        System.out.print("Ten sinh vien: ");
+        Student.name = scanner.nextLine();
+        System.out.print("Gioi tính: ");
+        Student.gender = Integer.parseInt(scanner.nextLine());
+        System.out.print("Dia chi: ");
+        Student.address = scanner.nextLine();
+        return new Student(id, name, gender, address);
+    }
     public Student inputInfoStudent() {
         System.out.print("Ma sinh vien: ");
         Student.id = Integer.parseInt(scanner.nextLine());
@@ -103,5 +123,4 @@ public class StudentManagement extends Student {
             }
         }
     }
-
 }
