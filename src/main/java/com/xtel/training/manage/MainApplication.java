@@ -29,7 +29,7 @@ public class MainApplication {
                     stdManagement.insertData();
                     break;
                 case 3:
-                    stdDao.updateStudent();
+                    stdManagement.updateData();
                     break;
                 case 4:
                     stdManagement.deleteData();

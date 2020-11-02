@@ -39,61 +39,63 @@ public class StudentDao {
         }
     }
 
-//    public static void update(Student std) throws SQLException {
-//        Connection connection = ConnectionFactory.createConnection();
-//        PreparedStatement ps = null;
-//        try {
-//            String sql = "UPDATE student SET name = ?, gender = ?, address = ? WHERE id = ?";
-//            ps = connection.prepareStatement(sql);
-//            ps.setInt(1, std.getId());
-//            ps.setString(2, std.getName());
-//            ps.setInt(3, std.getGender());
-//            ps.setString(4, std.getAddress());
-//            ps.execute();
-//        } finally {
-//            close(ps);
-//            close(connection);
-//        }
-//    }
-public static void updateStudent() throws SQLException {
-    System.out.println("Sửa thông tin sinh vien theo MSV");
-    StudentManagement studentManagement = new StudentManagement();
-    studentManagement.inputInfoStudent();
+    public static void update(Student std) throws SQLException {
+        Connection connection = ConnectionFactory.createConnection();
+        PreparedStatement ps = null;
+        try {
+            String sql = "update student SET name = ?, gender = ?, address = ? where id = ?";
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, std.getName());
+            ps.setInt(2, std.getGender());
+            ps.setString(3, std.getAddress());
+            ps.setInt(4, std.getId());
 
-    //Các bước cần làm để lấy dữ liệu trong CSDL ra & hiển thị
-    Connection conn = null;
-    PreparedStatement statement = null;
-    try {
-        //B1. Tạo kết nối tới CSDL
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_student", "root", "");
-
-        //B2. Tạo 1 truy vấn tới CSDL
-        //B2.1: Viết 1 lệnh sql lấy danh sách sinh viên
-        String sql = "UPDATE student SET name = ?, gender = ?, address = ? WHERE id = ?";
-        //B2.2: Viết API Java Trúy vấn CSDL
-        statement = conn.prepareCall(sql);
-        statement.setInt(1, studentManagement.getId());
-        statement.setString(2, studentManagement.getName());
-        statement.setInt(3, studentManagement.getGender());
-        statement.setString(4, studentManagement.getAddress());
-        //B2.4: Lấy dữ liệu từ CSDL ra
-        statement.execute();
-    }  finally {
-        //B3. Close connection
-        if (statement != null) {
-            try {
-                statement.close();
-            } catch (SQLException ex) {
-            }
-        }
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-            }
+            ps.execute();
+        } finally {
+            close(ps);
+            close(connection);
         }
     }
-}
+
+//public static void updateStudent() throws SQLException {
+//    System.out.println("Sua thong tin theo ma sinh vien");
+//    StudentManagement studentManagement = new StudentManagement();
+//    studentManagement.inputInfoStudent();
+//
+//    //Các bước cần làm để lấy dữ liệu trong CSDL ra & hiển thị
+//    Connection conn = null;
+//    PreparedStatement statement = null;
+//    try {
+//        //B1. Tạo kết nối tới CSDL
+//        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_student", "root", "");
+//
+//        //B2. Tạo 1 truy vấn tới CSDL
+//        //B2.1: Viết 1 lệnh sql lấy danh sách sinh viên
+//        String sql = "UPDATE student SET name = ?, gender = ?, address = ? WHERE id = ?";
+//        //B2.2: Viết API Java Trúy vấn CSDL
+//        statement = conn.prepareCall(sql);
+//        statement.setInt(1, studentManagement.getId());
+//        statement.setString(2, studentManagement.getName());
+//        statement.setInt(3, studentManagement.getGender());
+//        statement.setString(4, studentManagement.getAddress());
+//        //B2.4: Lấy dữ liệu từ CSDL ra
+//        statement.execute();
+//    }  finally {
+//        //B3. Close connection
+//        if (statement != null) {
+//            try {
+//                statement.close();
+//            } catch (SQLException ex) {
+//            }
+//        }
+//        if (conn != null) {
+//            try {
+//                conn.close();
+//            } catch (SQLException ex) {
+//            }
+//        }
+//    }
+//}
 
     public static void count() throws SQLException {
         try {

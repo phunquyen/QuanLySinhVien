@@ -1,10 +1,10 @@
 package com.xtel.training.manage.entities;
 
 public class Student {
-    protected static int id;
-    protected static String name;
-    protected static int gender;
-    protected static String address;
+    protected int id;
+    protected String name;
+    protected int gender;
+    protected String address;
 
     public Student() {
 
